@@ -208,6 +208,14 @@ const testConnection = async () => {
 }
 
 const saveConnection = async () => {
+  // Validate form first
+  try {
+    await connectionForm.value.validate()
+  } catch (error) {
+    ElMessage.warning('请检查表单输入')
+    return
+  }
+
   savingConnection.value = true
   try {
     // 保存到本地存储
