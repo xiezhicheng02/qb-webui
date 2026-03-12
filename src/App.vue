@@ -38,11 +38,6 @@
             </el-menu-item>
           </el-sub-menu>
 
-          <el-menu-item index="/categories">
-            <el-icon><Folder /></el-icon>
-            <span>分类</span>
-          </el-menu-item>
-
           <div class="sidebar-tags">
             <div class="tag-group">
               <div class="tag-group-title">分类</div>
@@ -70,12 +65,19 @@
               </div>
             </div>
           </div>
-
-          <el-menu-item index="/settings">
-            <el-icon><Setting /></el-icon>
-            <span>设置</span>
-          </el-menu-item>
         </el-menu>
+
+        <div class="sidebar-footer">
+          <el-menu
+            class="el-menu-vertical footer-menu"
+            router
+          >
+            <el-menu-item index="/settings">
+              <el-icon><Setting /></el-icon>
+              <span>设置</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
       </el-aside>
       <el-container>
         <el-header class="header">
@@ -356,6 +358,62 @@ html, body, #app {
   border-color: var(--primary-color);
   background-color: rgba(64, 158, 255, 0.1);
   font-weight: var(--font-weight-medium);
+}
+
+/* 侧边栏底部固定样式 */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--sidebar-background);
+  border-top: 1px solid #e6e6e6;
+  padding: var(--spacing-sm) 0;
+}
+
+.footer-menu {
+  border-right: none;
+  background: transparent;
+}
+
+.footer-menu .el-menu-item {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.3s ease;
+  margin: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  padding: 0 var(--spacing-md) !important;
+  background: transparent;
+}
+
+.footer-menu .el-menu-item:hover {
+  background-color: var(--background-color);
+  color: var(--text-primary);
+}
+
+.footer-menu .el-menu-item.is-active {
+  background-color: rgba(64, 158, 255, 0.1);
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+}
+
+.footer-menu .el-icon {
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.footer-menu .el-menu-item:hover .el-icon {
+  color: var(--primary-color);
+}
+
+.footer-menu .el-menu-item.is-active .el-icon {
+  color: var(--primary-color);
+}
+
+/* 调整侧边栏内容区域，为底部菜单留出空间 */
+.sidebar > .el-menu-vertical {
+  padding-bottom: 60px; /* 为底部设置菜单留出空间 */
 }
 
 </style>
