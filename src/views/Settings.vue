@@ -283,17 +283,72 @@ onMounted(() => {
 
 <style scoped>
 .settings {
-  padding: 10px;
+  padding: var(--spacing-md);
+  background-color: var(--background-color);
+  min-height: calc(100vh - 60px);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
 }
 
-.el-divider {
-  margin: 20px 0;
+/* 优化表单样式 */
+.el-form {
+  max-width: 600px;
+}
+
+.el-form-item {
+  margin-bottom: var(--spacing-lg);
+}
+
+.el-form-item__label {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+/* 优化按钮样式 */
+.el-button {
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 优化卡片样式 */
+.el-card {
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease;
+}
+
+.el-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* 优化标签样式 */
+.el-tag {
+  border-radius: var(--border-radius-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 优化输入框样式 */
+.el-input__inner,
+.el-input-number__input {
+  border-radius: var(--border-radius-sm);
+}
+
+/* 优化选项卡样式 */
+.el-tabs__item {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+.el-tabs__item.is-active {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
 }
 </style>
