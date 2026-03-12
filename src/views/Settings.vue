@@ -165,6 +165,14 @@ const rules = reactive({
 })
 
 const testConnection = async () => {
+  // Validate form first
+  try {
+    await connectionForm.value.validate()
+  } catch (error) {
+    ElMessage.warning('请检查表单输入')
+    return
+  }
+
   testingConnection.value = true
   try {
     // 设置API配置
@@ -187,7 +195,12 @@ const testConnection = async () => {
       torrentStore.isConnected = false
     }
   } catch (error) {
-    ElMessage.error('连接失败：' + error.message)
+    // 区分不同类型的错误
+    if (error.message && error.message.includes('Failed to fetch')) {
+      ElMessage.error('网络错误：无法连接到服务器')
+    } else {
+      ElMessage.error('连接失败：' + error.message)
+    }
     torrentStore.isConnected = false
   } finally {
     testingConnection.value = false
