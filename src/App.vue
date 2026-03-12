@@ -38,75 +38,38 @@
             </el-menu-item>
           </el-sub-menu>
 
-          <el-sub-menu index="categories">
-            <template #title>
-              <el-icon><Folder /></el-icon>
-              <span>分类</span>
-            </template>
-            <el-menu-item index="/categories/all">
-              <el-icon><Folder /></el-icon>
-              <span>全部分类</span>
-            </el-menu-item>
-            <el-menu-item index="/categories/movie">
-              <el-icon><Film /></el-icon>
-              <span>电影</span>
-            </el-menu-item>
-            <el-menu-item index="/categories/tv">
-              <el-icon><VideoCamera /></el-icon>
-              <span>电视剧</span>
-            </el-menu-item>
-            <el-menu-item index="/categories/anime">
-              <el-icon><Collection /></el-icon>
-              <span>动漫</span>
-            </el-menu-item>
-            <el-menu-item index="/categories/music">
-              <el-icon><Headset /></el-icon>
-              <span>音乐</span>
-            </el-menu-item>
-            <el-menu-item index="/categories/software">
-              <el-icon><Monitor /></el-icon>
-              <span>软件</span>
-            </el-menu-item>
-            <el-menu-item index="/categories/document">
-              <el-icon><Document /></el-icon>
-              <span>文档</span>
-            </el-menu-item>
-          </el-sub-menu>
+          <el-menu-item index="/categories">
+            <el-icon><Folder /></el-icon>
+            <span>分类</span>
+          </el-menu-item>
 
-          <el-sub-menu index="tags">
-            <template #title>
-              <el-icon><Collection /></el-icon>
-              <span>标签</span>
-            </template>
-            <el-menu-item index="/tags/all">
-              <el-icon><Collection /></el-icon>
-              <span>全部标签</span>
-            </el-menu-item>
-            <el-menu-item index="/tags/high-def">
-              <el-icon><Monitor /></el-icon>
-              <span>高清</span>
-            </el-menu-item>
-            <el-menu-item index="/tags/4k">
-              <el-icon><VideoCamera /></el-icon>
-              <span>4K</span>
-            </el-menu-item>
-            <el-menu-item index="/tags/chinese">
-              <el-icon><ChatLineRound /></el-icon>
-              <span>国语</span>
-            </el-menu-item>
-            <el-menu-item index="/tags/subtitle">
-              <el-icon><Document /></el-icon>
-              <span>中字</span>
-            </el-menu-item>
-            <el-menu-item index="/tags/lossless">
-              <el-icon><Headset /></el-icon>
-              <span>无损</span>
-            </el-menu-item>
-            <el-menu-item index="/tags/favorite">
-              <el-icon><Star /></el-icon>
-              <span>收藏</span>
-            </el-menu-item>
-          </el-sub-menu>
+          <div class="sidebar-tags">
+            <div class="tag-group">
+              <div class="tag-group-title">分类</div>
+              <div class="tag-container">
+                <router-link to="/categories/all" class="tag-item">全部</router-link>
+                <router-link to="/categories/movie" class="tag-item">电影</router-link>
+                <router-link to="/categories/tv" class="tag-item">电视剧</router-link>
+                <router-link to="/categories/anime" class="tag-item">动漫</router-link>
+                <router-link to="/categories/music" class="tag-item">音乐</router-link>
+                <router-link to="/categories/software" class="tag-item">软件</router-link>
+                <router-link to="/categories/document" class="tag-item">文档</router-link>
+              </div>
+            </div>
+
+            <div class="tag-group">
+              <div class="tag-group-title">标签</div>
+              <div class="tag-container">
+                <router-link to="/tags/all" class="tag-item">全部</router-link>
+                <router-link to="/tags/high-def" class="tag-item">高清</router-link>
+                <router-link to="/tags/4k" class="tag-item">4K</router-link>
+                <router-link to="/tags/chinese" class="tag-item">国语</router-link>
+                <router-link to="/tags/subtitle" class="tag-item">中字</router-link>
+                <router-link to="/tags/lossless" class="tag-item">无损</router-link>
+                <router-link to="/tags/favorite" class="tag-item">收藏</router-link>
+              </div>
+            </div>
+          </div>
 
           <el-menu-item index="/settings">
             <el-icon><Setting /></el-icon>
@@ -339,6 +302,60 @@ html, body, #app {
   background-color: var(--background-color);
   padding: var(--spacing-md);
   position: relative;
+}
+
+/* 侧边栏标签样式 */
+.sidebar-tags {
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-top: var(--spacing-xs);
+}
+
+.tag-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.tag-group:last-child {
+  margin-bottom: 0;
+}
+
+.tag-group-title {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-xs);
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tag-item {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid #e6e6e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.tag-item:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: rgba(64, 158, 255, 0.1);
+}
+
+.tag-item.router-link-active {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: rgba(64, 158, 255, 0.1);
+  font-weight: var(--font-weight-medium);
 }
 
 </style>
