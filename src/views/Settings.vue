@@ -108,6 +108,7 @@
 <script setup>
 import { ref, onMounted, computed, reactive } from 'vue'
 import { ElMessage } from 'element-plus'
+import { Connection, Check } from '@element-plus/icons-vue'
 import qbittorrentAPI from '@/api/qbittorrent'
 import { useTorrentStore } from '@/store/torrent'
 
