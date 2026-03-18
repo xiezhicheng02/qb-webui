@@ -122,7 +122,12 @@ export const useTorrentStore = defineStore('torrent', () => {
 
 
   function refreshCategories(category) {
-    categories.value = categories.value.filter(c => c.name !== category.name)
+    const index = categories.value.findIndex(c => c.name === category.name)
+    if (index !== -1) {
+      categories.value[index] = category
+    } else {
+      categories.value.push(category)
+    }
   }
 
 
@@ -195,6 +200,13 @@ export const useTorrentStore = defineStore('torrent', () => {
     }
   }
 
+  function removeTorrent(hash) {
+    const index = torrents.value.findIndex(t => t.hash === hash)
+    if (index !== -1) {
+      torrents.value.splice(index, 1)
+    }
+  }
+
 
 
   async function setGlobalSpeedLimits(limits) {
@@ -232,7 +244,7 @@ export const useTorrentStore = defineStore('torrent', () => {
       console.warn('refreshTorrent: Invalid torrent object or missing hash')
       return
     }
- 
+
     const index = torrents.value.findIndex(t => t.infohash_v1 === torrent.hash)
 
     if (index !== -1) {
@@ -306,6 +318,7 @@ export const useTorrentStore = defineStore('torrent', () => {
     pauseTorrent,
     resumeTorrent,
     deleteTorrent,
+    removeTorrent,
     setGlobalSpeedLimits,
     updatePreferences,
     setTorrents,

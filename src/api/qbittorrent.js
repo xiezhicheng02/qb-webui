@@ -783,7 +783,7 @@ class QBittorrentAPI {
    * @param {Function} callback - 数据更新回调函数
    * @param {number} interval - 轮询间隔（毫秒，默认1000）
    */
-  startPolling(callback, interval = 3000) {
+  startPolling(callback, interval = 2000) {
     this.pollingCallback = callback
     // Only reset rid to 0 if this is the first time polling
     // This preserves the rid across component remounts for incremental updates

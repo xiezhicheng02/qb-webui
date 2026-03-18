@@ -450,7 +450,7 @@ const handleLogout = () => {
 }
 
 .stat-label {
-  font-size: 9px;
+  font-size: var(--text-xs);
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -459,7 +459,7 @@ const handleLogout = () => {
 
 .stat-value {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--text-sm);
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.2;
@@ -493,7 +493,7 @@ const handleLogout = () => {
   border: none;
   border-radius: 4px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--text-sm);
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;

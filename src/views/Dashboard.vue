@@ -3,40 +3,40 @@
     <!-- 任务列表区域 -->
     <el-card class="torrent-section" shadow="never">
       <el-table :data="filteredTorrents" style="width: 100%" stripe height="100%">
-        <el-table-column prop="name" label="名称" min-width="200">
+        <el-table-column prop="name" label="名称" min-width="280">
           <template #default="scope">
             <div class="torrent-name">{{ scope.row.name }}</div>
           </template>
         </el-table-column>
-        <el-table-column prop="size" label="大小" width="100">
+        <el-table-column prop="size" label="大小" width="110">
           <template #default="scope">
             {{ formatSize(scope.row.size) }}
           </template>
         </el-table-column>
-        <el-table-column prop="progress" label="进度" width="120">
+        <el-table-column prop="progress" label="进度" width="140">
           <template #default="scope">
             <el-progress :percentage="scope.row.progress" :status="getProgressStatus(scope.row.progress)"
               :stroke-width="15" />
           </template>
         </el-table-column>
-        <el-table-column prop="downloadSpeed" label="下载速度" width="100">
+        <el-table-column prop="downloadSpeed" label="下载速度" width="140">
           <template #default="scope">
-            {{ formatSpeed(scope.row.downloadSpeed) }}
+            <span class="speed-value">{{ formatSpeed(scope.row.downloadSpeed) }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="uploadSpeed" label="上传速度" width="100">
+        <el-table-column prop="uploadSpeed" label="上传速度" width="140">
           <template #default="scope">
-            {{ formatSpeed(scope.row.uploadSpeed) }}
+            <span class="speed-value">{{ formatSpeed(scope.row.uploadSpeed) }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="状态" width="100">
+        <el-table-column prop="status" label="状态" width="110">
           <template #default="scope">
             <el-tag :type="getStatusType(scope.row.status)" size="small">
               {{ scope.row.status }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="150" fixed="right">
+        <el-table-column label="操作" width="130" fixed="right">
           <template #default="scope">
             <el-button-group size="small">
               <el-button v-if="scope.row.status === '下载中'" type="primary" icon="VideoPause"
@@ -113,9 +113,8 @@ const handleMainData = (data) => {
     }
 
     if (data.categories_removed) {
-      Object.keys(data.categories).forEach(name => {
-        let category = data.categories[name]
-        torrentStore.deleteCategory(category)
+      data.categories_removed.forEach(name => {
+        torrentStore.deleteCategory({ name })
       })
     }
 
@@ -324,6 +323,14 @@ onUnmounted(() => {
   white-space: nowrap;
   font-weight: var(--font-weight-medium);
   color: var(--text-primary);
+  font-size: var(--text-sm);
+}
+
+.speed-value {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
 }
 
 /* 优化操作按钮组 */
@@ -354,6 +361,7 @@ onUnmounted(() => {
   --el-pagination-button-disabled-text-color: var(--text-dim);
   --el-pagination-button-color: var(--text-secondary);
   --el-pagination-hover-color: var(--accent-cyan);
+  font-size: var(--text-sm);
 }
 
 .torrent-section :deep(.el-pager li) {
@@ -375,6 +383,7 @@ onUnmounted(() => {
   background-color: var(--bg-task-header);
   font-weight: var(--font-weight-medium);
   color: var(--text-secondary);
+  font-size: var(--text-xs);
   border-bottom: 1px solid var(--border-color-subtle);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -384,6 +393,8 @@ onUnmounted(() => {
   background-color: var(--bg-task-row);
   border-bottom: 1px solid rgba(56, 189, 248, 0.1);
   transition: background-color 0.2s ease;
+  font-size: var(--text-sm);
+  padding: 12px 16px;
 }
 
 .torrent-section :deep(.el-table tr:hover td) {
@@ -397,6 +408,7 @@ onUnmounted(() => {
 /* 优化进度条颜色 */
 .torrent-section :deep(.el-progress__text) {
   color: var(--text-secondary);
+  font-size: var(--text-xs);
 }
 
 /* 优化标签颜色 */
@@ -404,6 +416,7 @@ onUnmounted(() => {
   background-color: rgba(56, 189, 248, 0.15);
   border-color: rgba(56, 189, 248, 0.3);
   color: var(--accent-cyan);
+  font-size: var(--text-xs);
 }
 
 /* 优化按钮组样式 */
