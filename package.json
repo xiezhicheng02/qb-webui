@@ -1,0 +1,30 @@
+{
+  "name": "qb-webui",
+  "version": "1.0.0",
+  "description": "qBittorrent Web UI - 基于 Vue3 的现代界面",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "qbittorrent",
+    "vue3",
+    "web-ui",
+    "torrent"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "element-plus": "^2.13.5",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.30",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4",
+    "vite": "^7.3.1"
+  }
+}

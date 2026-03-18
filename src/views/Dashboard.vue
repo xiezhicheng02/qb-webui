@@ -1,98 +1,8 @@
 <template>
   <div class="dashboard">
-    <!-- 顶部统计区域 -->
-    <el-row :gutter="20" class="stats-section">
-      <el-col :span="6">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-content">
-            <el-icon class="stat-icon" color="#409eff"><Download /></el-icon>
-            <div class="stat-info">
-              <div class="stat-value">{{ stats.downloading }}</div>
-              <div class="stat-label">下载中</div>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-content">
-            <el-icon class="stat-icon" color="#67c23a"><Upload /></el-icon>
-            <div class="stat-info">
-              <div class="stat-value">{{ stats.uploading }}</div>
-              <div class="stat-label">上传中</div>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-content">
-            <el-icon class="stat-icon" color="#e6a23c"><Finished /></el-icon>
-            <div class="stat-info">
-              <div class="stat-value">{{ stats.completed }}</div>
-              <div class="stat-label">已完成</div>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-content">
-            <el-icon class="stat-icon" color="#f56c6c"><Warning /></el-icon>
-            <div class="stat-info">
-              <div class="stat-value">{{ stats.error }}</div>
-              <div class="stat-label">错误</div>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <!-- 速度监控区域 -->
-    <el-card class="speed-section" shadow="never">
-      <template #header>
-        <div class="card-header">
-          <span><el-icon><Monitor /></el-icon> 速度监控</span>
-        </div>
-      </template>
-      <div class="speed-info">
-        <div class="speed-item">
-          <span class="speed-label">下载速度:</span>
-          <span class="speed-value download">{{ formatSpeed(stats.downloadSpeed) }}</span>
-        </div>
-        <div class="speed-item">
-          <span class="speed-label">上传速度:</span>
-          <span class="speed-value upload">{{ formatSpeed(stats.uploadSpeed) }}</span>
-        </div>
-        <div class="speed-item">
-          <span class="speed-label">总下载:</span>
-          <span class="speed-value">{{ formatSize(stats.totalDownloaded) }}</span>
-        </div>
-        <div class="speed-item">
-          <span class="speed-label">总上传:</span>
-          <span class="speed-value">{{ formatSize(stats.totalUploaded) }}</span>
-        </div>
-      </div>
-    </el-card>
-
     <!-- 任务列表区域 -->
     <el-card class="torrent-section" shadow="never">
-      <template #header>
-        <div class="card-header">
-          <span><el-icon><List /></el-icon> 任务列表</span>
-          <div class="header-actions">
-            <el-input
-              v-model="searchQuery"
-              placeholder="搜索任务..."
-              prefix-icon="Search"
-              size="small"
-              style="width: 200px;"
-            />
-          </div>
-        </div>
-      </template>
-
-      <el-table :data="filteredTorrents" style="width: 100%" stripe height="400">
+      <el-table :data="filteredTorrents" style="width: 100%" stripe height="100%">
         <el-table-column prop="name" label="名称" min-width="200">
           <template #default="scope">
             <div class="torrent-name">{{ scope.row.name }}</div>
@@ -105,11 +15,8 @@
         </el-table-column>
         <el-table-column prop="progress" label="进度" width="120">
           <template #default="scope">
-            <el-progress
-              :percentage="scope.row.progress"
-              :status="getProgressStatus(scope.row.progress)"
-              :stroke-width="15"
-            />
+            <el-progress :percentage="scope.row.progress" :status="getProgressStatus(scope.row.progress)"
+              :stroke-width="15" />
           </template>
         </el-table-column>
         <el-table-column prop="downloadSpeed" label="下载速度" width="100">
@@ -132,54 +39,36 @@
         <el-table-column label="操作" width="150" fixed="right">
           <template #default="scope">
             <el-button-group size="small">
-              <el-button
-                v-if="scope.row.status === '下载中'"
-                type="primary"
-                icon="VideoPause"
-                @click="pauseTorrent(scope.row)"
-              />
-              <el-button
-                v-else-if="scope.row.status === '已暂停'"
-                type="success"
-                icon="VideoPlay"
-                @click="resumeTorrent(scope.row)"
-              />
-              <el-button
-                type="danger"
-                icon="Delete"
-                @click="deleteTorrent(scope.row)"
-              />
+              <el-button v-if="scope.row.status === '下载中'" type="primary" icon="VideoPause"
+                @click="pauseTorrent(scope.row)" />
+              <el-button v-else-if="scope.row.status === '已暂停'" type="success" icon="VideoPlay"
+                @click="resumeTorrent(scope.row)" />
+              <el-button type="danger" icon="Delete" @click="deleteTorrent(scope.row)" />
             </el-button-group>
           </template>
         </el-table-column>
       </el-table>
 
       <div class="pagination">
-        <el-pagination
-          v-model:current-page="currentPage"
-          :page-size="pageSize"
-          :total="torrents.length"
-          layout="total, prev, pager, next"
-          @current-change="handlePageChange"
-        />
+        <el-pagination v-model:current-page="currentPage" :page-size="pageSize" :total="torrents.length"
+          layout="total, prev, pager, next" @current-change="handlePageChange" />
       </div>
     </el-card>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
 import { useTorrentStore } from '@/store/torrent'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import qbittorrentAPI from '../api/qbittorrent'
 
 const route = useRoute()
 const torrentStore = useTorrentStore()
 
-const searchQuery = ref('')
 const filterType = ref('all')
 const currentPage = ref(1)
 const pageSize = ref(20)
-let refreshInterval = null
 
 // 监听路由变化，更新过滤类型
 watch(() => route.params.filter, (newFilter) => {
@@ -188,17 +77,54 @@ watch(() => route.params.filter, (newFilter) => {
   }
 }, { immediate: true })
 
-// 使用 store 数据
-const stats = computed(() => ({
-  downloading: torrentStore.downloadingCount,
-  uploading: torrentStore.uploadingCount,
-  completed: torrentStore.completedCount,
-  error: torrentStore.errorCount,
-  downloadSpeed: torrentStore.totalDownloadSpeed,
-  uploadSpeed: torrentStore.totalUploadSpeed,
-  totalDownloaded: torrentStore.totalDownloaded,
-  totalUploaded: torrentStore.totalUploaded
-}))
+// Polling callback for main data updates
+const handleMainData = (data) => {
+  if (data.full_update) {
+    // Full update - replace all data
+    if (data.torrents) {
+      torrentStore.setTorrents(Object.values(data.torrents))
+    } else {
+      torrentStore.setTorrents([])
+    }
+    if (data.server_state) {
+      torrentStore.setServerState(data.server_state)
+    }
+  } else {
+    // Partial update
+    if (data.torrents) {
+      Object.keys(data.torrents).forEach(hash => {
+        let torrent = data.torrents[hash]
+        torrent["hash"] = hash
+        torrentStore.refreshTorrent(torrent)
+      })
+    }
+
+    if (data.torrents_removed) {
+      data.torrents_removed.forEach(hash => {
+        torrentStore.removeTorrent(hash)
+      })
+    }
+
+    if (data.categories) {
+      Object.keys(data.categories).forEach(name => {
+        let category = data.categories[name]
+        torrentStore.refreshCategories(category)
+      })
+    }
+
+    if (data.categories_removed) {
+      Object.keys(data.categories).forEach(name => {
+        let category = data.categories[name]
+        torrentStore.deleteCategory(category)
+      })
+    }
+
+    if (data.server_state) {
+      torrentStore.refreshServerState(data.server_state)
+    }
+  }
+}
+
 
 // 转换种子数据格式
 const torrents = computed(() => {
@@ -218,13 +144,6 @@ const torrents = computed(() => {
 
 const filteredTorrents = computed(() => {
   let result = torrents.value
-
-  // 搜索过滤
-  if (searchQuery.value) {
-    result = result.filter(t =>
-      t.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    )
-  }
 
   // 类型过滤
   if (filterType.value !== 'all') {
@@ -299,158 +218,51 @@ const getStatusText = (state) => {
 }
 
 const pauseTorrent = async (torrent) => {
-  const success = await torrentStore.pauseTorrent(torrent.hash)
-  if (success) {
-    console.log('暂停任务:', torrent.name)
-  }
+  await torrentStore.pauseTorrent(torrent.hash)
 }
 
 const resumeTorrent = async (torrent) => {
-  const success = await torrentStore.resumeTorrent(torrent.hash)
-  if (success) {
-    console.log('恢复任务:', torrent.name)
-  }
+  await torrentStore.resumeTorrent(torrent.hash)
 }
 
 const deleteTorrent = async (torrent) => {
-  const success = await torrentStore.deleteTorrent(torrent.hash)
-  if (success) {
-    console.log('删除任务:', torrent.name)
-  }
+  await torrentStore.deleteTorrent(torrent.hash)
 }
 
 const handlePageChange = (page) => {
   currentPage.value = page
 }
 
-const startAutoRefresh = () => {
-  refreshInterval = setInterval(() => {
-    torrentStore.fetchTorrents()
-    torrentStore.fetchTransferInfo()
-  }, 3000)
-}
-
 onMounted(() => {
-  // 初始加载数据
-  torrentStore.fetchTorrents()
-  torrentStore.fetchTransferInfo()
-  torrentStore.fetchServerState()
-
-  // 启动自动刷新
-  startAutoRefresh()
+  // Start polling for main data updates
+  qbittorrentAPI.startPolling(handleMainData, 5000)
 })
 
 onUnmounted(() => {
-  if (refreshInterval) {
-    clearInterval(refreshInterval)
-  }
+  // Stop polling when component unmounts
+  qbittorrentAPI.stopPolling()
 })
 </script>
 
 <style scoped>
 .dashboard {
-  padding: var(--spacing-md);
-  background-color: var(--background-color);
+  padding: 12px;
+  background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-light-secondary) 100%);
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-/* 统计卡片样式 */
-.stats-section {
-  margin-bottom: var(--spacing-lg);
-  flex-shrink: 0;
-}
-
-.stat-card {
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.stat-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-lg);
-}
-
-.stat-icon {
-  font-size: 40px;
-  margin-right: var(--spacing-md);
-}
-
-.stat-info {
-  text-align: center;
-}
-
-.stat-value {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-}
-
-.stat-label {
-  font-size: var(--font-size-sm);
-  color: var(--text-tertiary);
-  margin-top: var(--spacing-xs);
-}
-
-/* 速度监控样式 */
-.speed-section {
-  margin-bottom: var(--spacing-lg);
-  flex-shrink: 0;
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-md);
-  color: var(--text-primary);
-}
-
-.card-header .el-icon {
-  margin-right: var(--spacing-sm);
-}
-
-.speed-info {
-  display: flex;
-  justify-content: space-around;
-  padding: var(--spacing-md) 0;
-}
-
-.speed-item {
-  text-align: center;
-  flex: 1;
-}
-
-.speed-label {
-  display: block;
-  font-size: var(--font-size-sm);
-  color: var(--text-tertiary);
-  margin-bottom: var(--spacing-sm);
-}
-
-.speed-value {
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-}
-
-.speed-value.download {
-  color: var(--primary-color);
-}
-
-.speed-value.upload {
-  color: #67c23a;
+.dashboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(2, 132, 199, 0.05) 0%, transparent 40%);
+  pointer-events: none;
 }
 
 /* 任务列表样式 */
@@ -459,8 +271,23 @@ onUnmounted(() => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(180deg, var(--bg-task-list) 0%, var(--bg-task-row) 100%);
+  border: 1px solid var(--border-color-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.torrent-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  opacity: 0.5;
 }
 
 .torrent-section :deep(.el-card__body) {
@@ -468,24 +295,27 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   padding: 0;
+  height: 100%;
 }
 
 .torrent-section :deep(.el-table) {
   flex: 1;
+  height: 100%;
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-md);
-  border-bottom: 1px solid #e6e6e6;
+.torrent-section :deep(.el-table__header) {
+  display: table-header-group;
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+.torrent-section :deep(.el-table__header th) {
+  background-color: var(--bg-task-header);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color-subtle);
+  padding: 12px 16px;
 }
 
 .torrent-name {
@@ -493,24 +323,87 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+/* 优化操作按钮组 */
+.torrent-section :deep(.el-button-group .el-button) {
+  background-color: var(--bg-task-row);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.torrent-section :deep(.el-button-group .el-button:hover) {
+  background-color: var(--bg-task-row-hover);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }
 
 .pagination {
-  padding: var(--spacing-md);
-  border-top: 1px solid #ebeef5;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color-subtle);
   display: flex;
   justify-content: flex-end;
+  background: var(--bg-task-list);
 }
 
-/* 优化表格样式 */
+/* 优化分页器样式 */
+.torrent-section :deep(.el-pagination) {
+  --el-pagination-button-bg-color: var(--bg-task-row);
+  --el-pagination-button-disabled-bg-color: var(--bg-task-header);
+  --el-pagination-button-disabled-text-color: var(--text-dim);
+  --el-pagination-button-color: var(--text-secondary);
+  --el-pagination-hover-color: var(--accent-cyan);
+}
+
+.torrent-section :deep(.el-pager li) {
+  background-color: var(--bg-task-row);
+  color: var(--text-secondary);
+}
+
+.torrent-section :deep(.el-pager li:hover) {
+  color: var(--accent-cyan);
+}
+
+.torrent-section :deep(.el-pager li.is-active) {
+  background-color: var(--accent-cyan);
+  color: #fff;
+}
+
+/* 优化表格样式 - 任务列表专用配色 */
 .torrent-section :deep(.el-table th) {
-  background-color: var(--background-color);
+  background-color: var(--bg-task-header);
   font-weight: var(--font-weight-medium);
   color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color-subtle);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .torrent-section :deep(.el-table td) {
   color: var(--text-primary);
+  background-color: var(--bg-task-row);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.torrent-section :deep(.el-table tr:hover td) {
+  background-color: var(--bg-task-row-hover);
+}
+
+.torrent-section :deep(.el-table__body-wrapper) {
+  background: linear-gradient(180deg, var(--bg-task-list) 0%, var(--bg-task-row) 100%);
+}
+
+/* 优化进度条颜色 */
+.torrent-section :deep(.el-progress__text) {
+  color: var(--text-secondary);
+}
+
+/* 优化标签颜色 */
+.torrent-section :deep(.el-tag) {
+  background-color: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan);
 }
 
 /* 优化按钮组样式 */
