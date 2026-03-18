@@ -1,0 +1,1261 @@
+{
+  "info": {
+    "name": "qBittorrent WebUI API (v5.0)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "qBittorrent WebUI API collection for Postman testing"
+  },
+  "item": [
+    {
+      "name": "Authentication API",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Application API",
+      "item": [
+        {
+          "name": "Get Version",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/app/version",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "app", "version"]
+            }
+          }
+        },
+        {
+          "name": "Get API Version",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/app/webapiVersion",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "app", "webapiVersion"]
+            }
+          }
+        },
+        {
+          "name": "Get Build Info",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/app/buildInfo",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "app", "buildInfo"]
+            }
+          }
+        },
+        {
+          "name": "Shutdown",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/app/shutdown",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "app", "shutdown"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Log API",
+      "item": [
+        {
+          "name": "Get Main Log",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/log/main?normal=true&info=true&warning=true&critical=true&last_known_id=-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "log", "main"],
+              "query": [
+                {
+                  "key": "normal",
+                  "value": "true"
+                },
+                {
+                  "key": "info",
+                  "value": "true"
+                },
+                {
+                  "key": "warning",
+                  "value": "true"
+                },
+                {
+                  "key": "critical",
+                  "value": "true"
+                },
+                {
+                  "key": "last_known_id",
+                  "value": "-1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sync API",
+      "item": [
+        {
+          "name": "Get Main Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/sync/maindata?rid=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "sync", "maindata"],
+              "query": [
+                {
+                  "key": "rid",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Peers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/sync/torrentPeers?hash={{torrent_hash}}&rid=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "sync", "torrentPeers"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                },
+                {
+                  "key": "rid",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transfer API",
+      "item": [
+        {
+          "name": "Get Transfer Info",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/transfer/info",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "transfer", "info"]
+            }
+          }
+        },
+        {
+          "name": "Get Speed Limits Mode",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/transfer/speedLimitsMode",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "transfer", "speedLimitsMode"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Speed Limits Mode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/transfer/toggleSpeedLimitsMode",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "transfer", "toggleSpeedLimitsMode"]
+            }
+          }
+        },
+        {
+          "name": "Set Global Download Limit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "limit",
+                  "value": "1024",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/transfer/setDownloadLimit",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "transfer", "setDownloadLimit"]
+            }
+          }
+        },
+        {
+          "name": "Set Global Upload Limit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "limit",
+                  "value": "1024",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/transfer/setUploadLimit",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "transfer", "setUploadLimit"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Torrent Management API",
+      "item": [
+        {
+          "name": "Get Torrent List",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/info?filter=downloading&category=sample%20category&sort=ratio",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "info"],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "downloading"
+                },
+                {
+                  "key": "category",
+                  "value": "sample category"
+                },
+                {
+                  "key": "sort",
+                  "value": "ratio"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Torrent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "urls",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "torrents",
+                  "type": "file"
+                },
+                {
+                  "key": "savepath",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "paused",
+                  "value": "false",
+                  "type": "text"
+                },
+                {
+                  "key": "skip_checking",
+                  "value": "false",
+                  "type": "text"
+                },
+                {
+                  "key": "root_folder",
+                  "value": "true",
+                  "type": "text"
+                },
+                {
+                  "key": "rename",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "upLimit",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "dlLimit",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "ratioLimit",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "seedingTimeLimit",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "autoTMM",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "sequentialDownload",
+                  "value": "false",
+                  "type": "text"
+                },
+                {
+                  "key": "firstLastPiecePrio",
+                  "value": "false",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/add",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "add"]
+            }
+          }
+        },
+        {
+          "name": "Pause Torrent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/pause?hashes={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "pause"],
+              "query": [
+                {
+                  "key": "hashes",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Resume Torrent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/resume?hashes={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "resume"],
+              "query": [
+                {
+                  "key": "hashes",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Torrent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/delete?hashes={{torrent_hash}}&deleteFiles=false",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "delete"],
+              "query": [
+                {
+                  "key": "hashes",
+                  "value": "{{torrent_hash}}"
+                },
+                {
+                  "key": "deleteFiles",
+                  "value": "false"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Recheck Torrent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/recheck?hashes={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "recheck"],
+              "query": [
+                {
+                  "key": "hashes",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Properties",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/properties?hash={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "properties"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Trackers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/trackers?hash={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "trackers"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Web Seeds",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/webseeds?hash={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "webseeds"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Files",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/files?hash={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "files"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Piece States",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/pieceStates?hash={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "pieceStates"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Torrent Piece Hashes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/pieceHashes?hash={{torrent_hash}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "pieceHashes"],
+              "query": [
+                {
+                  "key": "hash",
+                  "value": "{{torrent_hash}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Pause All",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/pauseAll",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "pauseAll"]
+            }
+          }
+        },
+        {
+          "name": "Resume All",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/resumeAll",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "resumeAll"]
+            }
+          }
+        },
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "category",
+                  "value": "my_category",
+                  "type": "text"
+                },
+                {
+                  "key": "savePath",
+                  "value": "",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/createCategory",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "createCategory"]
+            }
+          }
+        },
+        {
+          "name": "Remove Categories",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "categories",
+                  "value": "my_category",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/removeCategories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "removeCategories"]
+            }
+          }
+        },
+        {
+          "name": "Get Tags",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/tags",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "tags"]
+            }
+          }
+        },
+        {
+          "name": "Create Tags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "tags",
+                  "value": "my_tag",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/createTags",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "createTags"]
+            }
+          }
+        },
+        {
+          "name": "Delete Tags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "tags",
+                  "value": "my_tag",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/deleteTags",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "torrents", "deleteTags"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "RSS API",
+      "item": [
+        {
+          "name": "Get RSS Feeds",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/rss/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "rss", "items"]
+            }
+          }
+        },
+        {
+          "name": "Add RSS Feed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "url",
+                  "value": "https://example.com/feed.xml",
+                  "type": "text"
+                },
+                {
+                  "key": "path",
+                  "value": "",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/rss/addItem",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "rss", "addItem"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search API",
+      "item": [
+        {
+          "name": "Start Search",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "pattern",
+                  "value": "ubuntu",
+                  "type": "text"
+                },
+                {
+                  "key": "plugins",
+                  "value": "all",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "all",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/search/start",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "search", "start"]
+            }
+          }
+        },
+        {
+          "name": "Stop Search",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/search/stop?searchId={{search_id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "search", "stop"],
+              "query": [
+                {
+                  "key": "searchId",
+                  "value": "{{search_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Search Results",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/search/results?searchId={{search_id}}&limit=10&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "search", "results"],
+              "query": [
+                {
+                  "key": "searchId",
+                  "value": "{{search_id}}"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Search",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "{{baseUrl}}"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/search/delete?searchId={{search_id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "search", "delete"],
+              "query": [
+                {
+                  "key": "searchId",
+                  "value": "{{search_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

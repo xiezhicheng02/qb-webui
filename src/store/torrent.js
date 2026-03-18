@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import qbittorrentAPI from '@/api/qbittorrent'
+import { useNotificationStore } from './notification'
 
 export const useTorrentStore = defineStore('torrent', () => {
+  const notificationStore = useNotificationStore()
   // 状态
   const torrents = ref([])
   const transferInfo = ref({})
@@ -153,10 +155,14 @@ export const useTorrentStore = defineStore('torrent', () => {
       const success = await qbittorrentAPI.addTorrent(url, options)
       if (success) {
         await fetchTorrents()
+        notificationStore.success('添加成功', '种子已添加到下载队列')
+      } else {
+        notificationStore.error('添加失败', '无法添加种子，请检查URL')
       }
       return success
     } catch (err) {
       console.error('Failed to add torrent:', err)
+      notificationStore.error('添加失败', err.message || '添加种子时发生错误')
       return false
     }
   }
@@ -166,10 +172,14 @@ export const useTorrentStore = defineStore('torrent', () => {
       const success = await qbittorrentAPI.pauseTorrent(hash)
       if (success) {
         await fetchTorrents()
+        notificationStore.success('已暂停', '种子已暂停下载')
+      } else {
+        notificationStore.error('暂停失败', '无法暂停种子')
       }
       return success
     } catch (err) {
       console.error('Failed to pause torrent:', err)
+      notificationStore.error('暂停失败', err.message || '暂停种子时发生错误')
       return false
     }
   }
@@ -179,10 +189,14 @@ export const useTorrentStore = defineStore('torrent', () => {
       const success = await qbittorrentAPI.resumeTorrent(hash)
       if (success) {
         await fetchTorrents()
+        notificationStore.success('已恢复', '种子已恢复下载')
+      } else {
+        notificationStore.error('恢复失败', '无法恢复种子')
       }
       return success
     } catch (err) {
       console.error('Failed to resume torrent:', err)
+      notificationStore.error('恢复失败', err.message || '恢复种子时发生错误')
       return false
     }
   }
@@ -192,10 +206,14 @@ export const useTorrentStore = defineStore('torrent', () => {
       const success = await qbittorrentAPI.deleteTorrent(hash, deleteFiles)
       if (success) {
         await fetchTorrents()
+        notificationStore.success('已删除', deleteFiles ? '种子及文件已删除' : '种子已删除')
+      } else {
+        notificationStore.error('删除失败', '无法删除种子')
       }
       return success
     } catch (err) {
       console.error('Failed to delete torrent:', err)
+      notificationStore.error('删除失败', err.message || '删除种子时发生错误')
       return false
     }
   }
@@ -214,10 +232,14 @@ export const useTorrentStore = defineStore('torrent', () => {
       const success = await qbittorrentAPI.setGlobalSpeedLimits(limits)
       if (success) {
         await fetchTransferInfo()
+        notificationStore.success('速度限制已更新', '全局速度限制已应用')
+      } else {
+        notificationStore.error('更新失败', '无法更新速度限制')
       }
       return success
     } catch (err) {
       console.error('Failed to set speed limits:', err)
+      notificationStore.error('更新失败', err.message || '设置速度限制时发生错误')
       return false
     }
   }
@@ -227,10 +249,14 @@ export const useTorrentStore = defineStore('torrent', () => {
       const success = await qbittorrentAPI.setPreferences(newPrefs)
       if (success) {
         await fetchPreferences()
+        notificationStore.success('设置已保存', '偏好设置已更新')
+      } else {
+        notificationStore.error('保存失败', '无法保存设置')
       }
       return success
     } catch (err) {
       console.error('Failed to update preferences:', err)
+      notificationStore.error('保存失败', err.message || '保存设置时发生错误')
       return false
     }
   }

@@ -29,6 +29,7 @@
   /* Improved Text Contrast for Light Theme */
   --text-primary: #1e293b;
   --text-secondary: #475569;
+  --text-tertiary: #909399;
   --text-muted: #64748b;
   --text-dim: #94a3b8;
 
@@ -82,10 +83,14 @@
 
   /* Additional Colors */
   --primary-color: var(--accent-cyan);
+  --primary-hover: #66b1ff;
+  --primary-active: #3a8ee6;
   --background-color: var(--bg-light);
 
   /* Font Weights */
+  --font-weight-normal: 400;
   --font-weight-medium: 500;
+  --font-weight-bold: 700;
 
   /* Status Colors */
   --status-success: #34d399;

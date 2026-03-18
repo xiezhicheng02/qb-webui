@@ -1,0 +1,1478 @@
+{
+  "info": {
+    "name": "qBittorrent WebUI API (v5.0)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "qBittorrent WebUI API collection for Postman testing"
+  },
+  "item": [
+    {
+      "name": "Apiname",
+      "item": [
+        {
+          "name": "APIName methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/APIName/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "APIName",
+                "methodName"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Application API",
+      "item": [
+        {
+          "name": "app methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/app/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "app",
+                "methodName"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication API",
+      "item": [
+        {
+          "name": "auth login",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "qBittorrent uses cookie-based authentication.",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/auth/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "methodName"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Log API",
+      "item": [
+        {
+          "name": "log methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/log/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "log",
+                "methodName"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/log/main",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "log",
+                "main"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "RSS API",
+      "item": [
+        {
+          "name": "rss methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/rss/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "rss",
+                "methodName"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search API",
+      "item": [
+        {
+          "name": "search methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/search/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "search",
+                "methodName"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sync API",
+      "item": [
+        {
+          "name": "sync methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/sync/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "sync",
+                "methodName"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/sync/maindata",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "sync",
+                "maindata"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/sync/torrentPeers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "sync",
+                "torrentPeers"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Torrent Management API",
+      "item": [
+        {
+          "name": "torrents add",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "add"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents add",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "add"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents addTrackers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/addTrackers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "addTrackers"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents downloadLimit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/downloadLimit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "downloadLimit"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setDownloadLimit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setDownloadLimit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setDownloadLimit"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setShareLimits",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setShareLimits",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setShareLimits"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents uploadLimit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/uploadLimit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "uploadLimit"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setUploadLimit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setUploadLimit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setUploadLimit"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setLocation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setLocation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setLocation"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents rename",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/rename",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "rename"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setCategory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setCategory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setCategory"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents createCategory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/createCategory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "createCategory"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents editCategory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/editCategory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "editCategory"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents removeCategories",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/removeCategories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "removeCategories"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents addTags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/addTags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "addTags"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents removeTags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/removeTags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "removeTags"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents createTags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/createTags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "createTags"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents deleteTags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/deleteTags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "deleteTags"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setAutoManagement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setAutoManagement",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setAutoManagement"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setForceStart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setForceStart",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setForceStart"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents setSuperSeeding",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/setSuperSeeding",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "setSuperSeeding"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          }
+        },
+        {
+          "name": "torrents info",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/info",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "info"
+              ]
+            }
+          }
+        },
+        {
+          "name": "torrents methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "methodName"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/stop",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "stop"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/start",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/recheck",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "recheck"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/reannounce",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "reannounce"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/increasePrio",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "increasePrio"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/decreasePrio",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "decreasePrio"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/topPrio",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "topPrio"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/bottomPrio",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "bottomPrio"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/toggleSequentialDownload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "toggleSequentialDownload"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Example:",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/torrents/toggleFirstLastPiecePrio",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "torrents",
+                "toggleFirstLastPiecePrio"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transfer API",
+      "item": [
+        {
+          "name": "transfer methodName",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "http://localhost:8080"
+              },
+              {
+                "key": "Cookie",
+                "value": "SID={{sid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/transfer/methodName",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "transfer",
+                "methodName"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -153,6 +153,9 @@
         </div>
       </main>
     </template>
+
+    <!-- Notification Container -->
+    <NotificationContainer />
   </div>
 </template>
 

@@ -7,6 +7,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
 import qbittorrentAPI from './api/qbittorrent'
+import NotificationContainer from './components/NotificationContainer.vue'
 
 const app = createApp(App)
 
@@ -14,6 +15,9 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+// 注册全局组件
+app.component('NotificationContainer', NotificationContainer)
 
 // API configuration is now handled by the login page
 // The login page will set the configuration after successful authentication
