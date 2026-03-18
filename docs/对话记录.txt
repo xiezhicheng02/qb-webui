@@ -1,0 +1,89 @@
+# QB-WebUI 项目对话记录
+
+## 对话时间：2026-03-10
+
+### 第一次对话
+**用户**: 你内部调用的是什么大模型
+**助手**: 我内部调用的是 mimo-v2-flash 模型。
+
+### 第二次对话
+**用户**: 把我和你的对话信息存储在当前的目录下
+**助手**: 我将把我们的对话信息存储到当前目录下的一个文件中。
+已创建文件：c:\home\project\对话记录.txt
+
+### 第三次对话
+**用户**: 我准备开发一个qbittorrent的UI页面，使用Vue3.0框架，调用qbittorrent的API接口，帮我这个项目起一个名字，并创建文件夹，再文件夹中初始化项目，项目采用element-ui组件
+**助手**:
+- 项目名称：QB-WebUI
+- 创建了项目文件夹结构
+- 安装了 Vue3 + Element Plus
+- 配置了 Vite 构建工具
+- 创建了基础路由配置
+- 创建了主页面布局
+- 启动了开发服务器（http://localhost:3000）
+
+### 第四次对话
+**用户**: 我每天都只有一个小时的业余时间可以来开发这个项目，并且帮我列一个完成这个项目的计划表，每天完成一个小功能，并且详细计划下这个项目的框架，对象，结构，组件，并生成技术文档
+**助手**:
+- 制定了30天开发计划表
+- 创建了项目架构设计文档
+- 定义了核心对象（Torrent, Settings, TransferInfo）
+- 设计了组件结构
+- 创建了状态管理方案
+- 设计了API接口
+- 生成了技术文档
+
+### 第五次对话
+**用户**: 你帮我生成的这个开发计划和技术文档，写到文件中
+**助手**:
+- 已创建 DEVELOPMENT_PLAN.md（开发计划）
+- 已创建 TECHNICAL_DOCUMENTATION.md（技术文档）
+
+### 第六次对话
+**用户**: 创建一个docs目录，把非直接开发相关的文档都放入这个目录中
+**助手**:
+- 创建了 docs/ 目录
+- 移动了所有文档文件到 docs/ 目录：
+  - DEVELOPMENT_PLAN.md
+  - TECHNICAL_DOCUMENTATION.md
+  - PROJECT_STATUS.md
+  - CLAUDE.md
+  - 对话记录.txt
+- 更新了 README.md 添加 docs 目录说明
+- 创建了 docs/README.md 文档索引
+
+### 第七次对话
+**用户**: 现在我要开始优化布局了，请把概览和任务列表页面合并成一个，概览信息放在上部，任务列表信息放在中间和下面，然后优化下布局
+**助手**:
+- 创建了 Dashboard.vue 页面（合并概览+任务列表）
+- 更新了路由配置（移除概览和任务列表路由，统一使用仪表盘）
+- 更新了侧边栏菜单（合并为"仪表盘"）
+- 优化了页面布局结构：
+  - 顶部：统计卡片（下载中、上传中、已完成、错误）
+  - 中部：速度监控区域
+  - 下部：任务列表区域
+- 优化了样式和响应式布局
+
+### 项目当前状态
+- 项目名称：QB-WebUI
+- 技术栈：Vue3 + Element Plus + Pinia + Vue Router + Vite
+- 项目路径：c:\home\project\qb-webui
+- 开发服务器：http://localhost:3000
+- 已创建文件：
+  - src/App.vue（主布局）
+  - src/main.js（入口文件）
+  - src/router/index.js（路由配置）
+  - src/views/Overview.vue（概览页面）
+  - src/views/Torrents.vue（任务列表页面）
+  - src/views/Settings.vue（设置页面）
+  - src/api/qbittorrent.js（API客户端）
+  - src/store/torrent.js（种子状态管理）
+  - DEVELOPMENT_PLAN.md（开发计划）
+  - TECHNICAL_DOCUMENTATION.md（技术文档）
+
+## 下次对话继续
+下次打开项目时，可以：
+1. 查看对话记录文件了解项目进度
+2. 继续执行30天开发计划
+3. 查看 DEVELOPMENT_PLAN.md 了解详细计划
+4. 查看 TECHNICAL_DOCUMENTATION.md 了解技术细节
