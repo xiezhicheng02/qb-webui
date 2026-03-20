@@ -3,18 +3,27 @@
     <!-- Background Effects -->
     <div class="bg-grid"></div>
     <div class="bg-gradient-mesh"></div>
-    <div class="particles">
-      <div v-for="n in 20" :key="n" class="particle" :style="getParticleStyle(n)"></div>
-    </div>
 
     <!-- Login Card -->
     <div class="login-card glass-panel">
       <div class="card-header">
         <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          <svg viewBox="0 0 80 80" fill="none">
+            <defs>
+              <linearGradient id="login-logo-grad" x1="10" y1="10" x2="70" y2="70" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#22d3ee"/>
+                <stop offset="1" stop-color="#c4b5fd"/>
+              </linearGradient>
+            </defs>
+            <polygon points="40,16 58,26 58,46 40,56 22,46 22,26" stroke="url(#login-logo-grad)" stroke-width="2.5" fill="none"/>
+            <path d="M40 28 L40 44" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/>
+            <path d="M33 38 L40 46 L47 38" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14" cy="40" r="3" fill="#a78bfa" opacity="0.5"/>
+            <circle cx="66" cy="40" r="3" fill="#22d3ee" opacity="0.5"/>
+            <circle cx="40" cy="8" r="2.5" fill="#a78bfa" opacity="0.4"/>
+            <circle cx="40" cy="72" r="2.5" fill="#22d3ee" opacity="0.4"/>
+            <line x1="17" y1="40" x2="22" y2="38" stroke="#a78bfa" stroke-width="1" opacity="0.3"/>
+            <line x1="58" y1="34" x2="63" y2="40" stroke="#22d3ee" stroke-width="1" opacity="0.3"/>
           </svg>
         </div>
         <h1 class="title">QB-WebUI</h1>
@@ -72,9 +81,6 @@
         <div class="status-line"></div>
       </div>
     </div>
-
-    <!-- Scanline Effect -->
-    <div class="scanlines"></div>
   </div>
 </template>
 
@@ -97,23 +103,6 @@ const rules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' }
   ]
-}
-
-// Particle animation styles
-const getParticleStyle = (index) => {
-  const size = Math.random() * 4 + 1
-  const left = Math.random() * 100
-  const top = Math.random() * 100
-  const delay = Math.random() * 5
-  const duration = Math.random() * 10 + 10
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    top: `${top}%`,
-    animationDelay: `${delay}s`,
-    animationDuration: `${duration}s`
-  }
 }
 
 // Check auth status
@@ -197,7 +186,7 @@ onMounted(async () => {
   align-items: center;
   min-height: 100vh;
   width: 100vw;
-  background-color: var(--bg-light);
+  background-color: var(--bg-base);
   overflow: hidden;
 }
 
@@ -209,8 +198,9 @@ onMounted(async () => {
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--accent-primary), transparent 1px),
+    linear-gradient(90deg, var(--accent-primary), transparent 1px);
+  opacity: 0.05;
   background-size: 50px 50px;
   pointer-events: none;
 }
@@ -222,8 +212,9 @@ onMounted(async () => {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 20% 30%, rgba(2, 132, 199, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.08) 0%, transparent 40%);
+    radial-gradient(circle at 20% 30%, var(--accent-primary) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--accent-secondary) 0%, transparent 40%);
+  opacity: 0.08;
   pointer-events: none;
   animation: meshShift 10s ease-in-out infinite alternate;
 }
@@ -233,30 +224,6 @@ onMounted(async () => {
   100% { transform: scale(1.1) translate(-20px, -20px); }
 }
 
-.particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  background: var(--accent-cyan);
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: floatParticle linear infinite;
-}
-
-@keyframes floatParticle {
-  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.3; }
-  90% { opacity: 0.3; }
-  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-}
-
 /* Login Card */
 .login-card {
   position: relative;
@@ -264,7 +231,7 @@ onMounted(async () => {
   max-width: 420px;
   padding: 40px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-card);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   box-shadow:
@@ -446,25 +413,6 @@ onMounted(async () => {
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-  opacity: 0.5;
-}
-
-/* Scanlines */
-.scanlines {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.03),
-    rgba(0, 0, 0, 0.03) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 1000;
   opacity: 0.5;
 }
 </style>

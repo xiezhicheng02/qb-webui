@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useTorrentStore } from '@/store/torrent'
 
@@ -98,6 +98,13 @@ const saveInterfaceSettings = () => {
   ElMessage.success('界面设置已保存')
 }
 
+// Apply theme when selector changes
+watch(() => interfaceSettings.value.theme, (newTheme) => {
+  if (window.__toggleTheme) {
+    window.__toggleTheme(newTheme)
+  }
+})
+
 onMounted(() => {
   // 加载下载设置
   const savedDownload = localStorage.getItem('qb-webui-download')
@@ -114,6 +121,10 @@ onMounted(() => {
   if (savedInterface) {
     try {
       interfaceSettings.value = JSON.parse(savedInterface)
+      // Apply loaded theme
+      if (window.__toggleTheme) {
+        window.__toggleTheme(interfaceSettings.value.theme)
+      }
     } catch (e) {
       console.error('Failed to load interface settings:', e)
     }

@@ -11,10 +11,22 @@
       <aside class="sidebar" :style="{ width: sidebarCollapsed ? '60px' : 'var(--sidebar-width)' }">
         <div class="sidebar-header">
           <div class="logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            <svg viewBox="0 0 80 80" fill="none">
+              <defs>
+                <linearGradient id="logo-grad" x1="10" y1="10" x2="70" y2="70" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#22d3ee"/>
+                  <stop offset="1" stop-color="#c4b5fd"/>
+                </linearGradient>
+              </defs>
+              <polygon points="40,16 58,26 58,46 40,56 22,46 22,26" stroke="url(#logo-grad)" stroke-width="2.5" fill="none"/>
+              <path d="M40 28 L40 44" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/>
+              <path d="M33 38 L40 46 L47 38" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="14" cy="40" r="3" fill="#a78bfa" opacity="0.5"/>
+              <circle cx="66" cy="40" r="3" fill="#22d3ee" opacity="0.5"/>
+              <circle cx="40" cy="8" r="2.5" fill="#a78bfa" opacity="0.4"/>
+              <circle cx="40" cy="72" r="2.5" fill="#22d3ee" opacity="0.4"/>
+              <line x1="17" y1="40" x2="22" y2="38" stroke="#a78bfa" stroke-width="1" opacity="0.3"/>
+              <line x1="58" y1="34" x2="63" y2="40" stroke="#22d3ee" stroke-width="1" opacity="0.3"/>
             </svg>
           </div>
           <span v-if="!sidebarCollapsed" class="logo-text">QB-WebUI</span>
@@ -276,6 +288,7 @@ const handleLogout = () => {
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition: opacity 250ms ease;
 }
 
 .sidebar-nav {
@@ -516,8 +529,9 @@ const handleLogout = () => {
 
 .action-btn.primary:hover {
   opacity: 0.95;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .action-btn.logout {

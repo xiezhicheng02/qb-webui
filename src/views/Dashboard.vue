@@ -276,6 +276,7 @@ onUnmounted(() => {
   border: 1px solid var(--border-color-subtle);
   position: relative;
   overflow: hidden;
+  animation: fadeInUp 300ms ease;
 }
 
 .torrent-section::before {
@@ -392,13 +393,15 @@ onUnmounted(() => {
   color: var(--text-primary);
   background-color: var(--bg-task-row);
   border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-  transition: background-color 0.2s ease;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: var(--text-sm);
   padding: 12px 16px;
 }
 
 .torrent-section :deep(.el-table tr:hover td) {
   background-color: var(--bg-task-row-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .torrent-section :deep(.el-table__body-wrapper) {
@@ -411,12 +414,43 @@ onUnmounted(() => {
   font-size: var(--text-xs);
 }
 
+/* 进度条光泽脉冲动画 */
+.torrent-section :deep(.el-progress-bar__outer) {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.torrent-section :deep(.el-progress-bar__inner) {
+  transition: width 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.torrent-section :deep(.el-progress-bar__inner)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
 /* 优化标签颜色 */
 .torrent-section :deep(.el-tag) {
   background-color: rgba(56, 189, 248, 0.15);
   border-color: rgba(56, 189, 248, 0.3);
   color: var(--accent-cyan);
   font-size: var(--text-xs);
+  border-radius: var(--border-radius-sm);
+}
+
+html.dark .torrent-section :deep(.el-tag) {
+  background-color: rgba(34, 211, 238, 0.15);
+  border-color: rgba(34, 211, 238, 0.3);
+  color: var(--accent-primary);
 }
 
 /* 优化按钮组样式 */

@@ -89,7 +89,7 @@ const removeNotification = (id) => {
 
 .notification:hover {
   transform: translateX(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .notification-success {

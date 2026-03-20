@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import './assets/main.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
@@ -25,5 +26,40 @@ app.component('NotificationContainer', NotificationContainer)
 app.use(createPinia())
 app.use(router)
 app.use(ElementPlus)
+
+// === Theme System ===
+function applyTheme(preference) {
+  const html = document.documentElement
+  if (preference === 'dark') {
+    html.classList.add('dark')
+  } else if (preference === 'light') {
+    html.classList.remove('dark')
+  } else {
+    // auto — follow system preference
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.classList.add('dark')
+    } else {
+      html.classList.remove('dark')
+    }
+  }
+}
+
+// Global theme toggle for Settings page
+window.__toggleTheme = (preference) => {
+  localStorage.setItem('theme-preference', preference)
+  applyTheme(preference)
+}
+
+// Apply saved theme on startup
+const savedTheme = localStorage.getItem('theme-preference') || 'light'
+applyTheme(savedTheme)
+
+// Listen for system theme changes (only matters in 'auto' mode)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  const pref = localStorage.getItem('theme-preference') || 'light'
+  if (pref === 'auto') {
+    applyTheme('auto')
+  }
+})
 
 app.mount('#app')
