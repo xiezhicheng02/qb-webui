@@ -109,7 +109,6 @@ const formatSpeed = (bytes) => {
 }
 
 .stat-icon {
-  font-size: var(--text-2xl);
   margin-right: 15px;
 }
 

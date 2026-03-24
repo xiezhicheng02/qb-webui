@@ -124,6 +124,108 @@ class QBittorrentAPI {
   }
 
   /**
+   * 获取所有分类
+   * @returns {Promise<Object>} - 分类对象
+   */
+  async getCategories() {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/categories`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return {}
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get categories:', error)
+      return {}
+    }
+  }
+
+  /**
+   * 添加/创建分类
+   * @param {string} name - 分类名称
+   * @param {string} savePath - 保存路径
+   * @returns {Promise<boolean>}
+   */
+  async addCategory(name, savePath = '') {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/createCategory`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `category=${encodeURIComponent(name)}&savePath=${encodeURIComponent(savePath)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to add category:', error)
+      return false
+    }
+  }
+
+  /**
+   * 设置任务分类
+   * @param {string|string[]} hashes - 种子哈希值
+   * @param {string} category - 分类名称
+   * @returns {Promise<boolean>}
+   */
+  async setTorrentCategory(hashes, category) {
+    try {
+      const hashString = Array.isArray(hashes) ? hashes.join('|') : hashes
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/setCategory`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashString}&category=${encodeURIComponent(category)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to set category:', error)
+      return false
+    }
+  }
+
+  /**
+   * 删除分类
+   * @param {string|string[]} categories - 分类名称
+   * @returns {Promise<boolean>}
+   */
+  async removeCategory(categories) {
+    try {
+      const categoryString = Array.isArray(categories) ? categories.join('|') : categories
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/removeCategories`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `categories=${encodeURIComponent(categoryString)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to remove category:', error)
+      return false
+    }
+  }
+
+  /**
+   * 编辑分类
+   * @param {string} name - 原分类名称
+   * @param {string} savePath - 保存路径
+   * @returns {Promise<boolean>}
+   */
+  async editCategory(name, savePath = '') {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/editCategory`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `category=${encodeURIComponent(name)}&savePath=${encodeURIComponent(savePath)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to edit category:', error)
+      return false
+    }
+  }
+
+  /**
    * 获取种子列表（带筛选）
    * @param {Object} params - 筛选参数
    * @returns {Promise<Array>}
@@ -174,6 +276,36 @@ class QBittorrentAPI {
       return response.ok
     } catch (error) {
       console.error('Failed to add torrent:', error)
+      return false
+    }
+  }
+
+  /**
+   * 通过文件添加种子
+   * @param {File} file - 种子文件
+   * @param {Object} options - 选项
+   * @returns {Promise<boolean>}
+   */
+  async addTorrentFromFile(file, options = {}) {
+    try {
+      const formData = new FormData()
+      formData.append('torrents', file)
+
+      if (options.savepath) formData.append('savepath', options.savepath)
+      if (options.category) formData.append('category', options.category)
+      if (options.paused !== undefined) formData.append('paused', options.paused)
+      if (options.skipChecking !== undefined) formData.append('skip_checking', options.skipChecking)
+
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/add`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: formData
+      })
+
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to add torrent from file:', error)
       return false
     }
   }
@@ -235,6 +367,151 @@ class QBittorrentAPI {
       return response.ok
     } catch (error) {
       console.error('Failed to delete torrent:', error)
+      return false
+    }
+  }
+
+  /**
+   * 批量暂停种子
+   * @param {string[]} hashes - 种子哈希数组
+   * @returns {Promise<boolean>}
+   */
+  async pauseTorrents(hashes) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/pause`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashes.join(',')}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to pause torrents:', error)
+      return false
+    }
+  }
+
+  /**
+   * 批量恢复种子
+   * @param {string[]} hashes - 种子哈希数组
+   * @returns {Promise<boolean>}
+   */
+  async resumeTorrents(hashes) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/resume`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashes.join(',')}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to resume torrents:', error)
+      return false
+    }
+  }
+
+  /**
+   * 批量删除种子
+   * @param {string[]} hashes - 种子哈希数组
+   * @param {boolean} deleteFiles - 是否删除文件
+   * @returns {Promise<boolean>}
+   */
+  async deleteTorrents(hashes, deleteFiles = false) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/delete`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashes.join(',')}&deleteFiles=${deleteFiles}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to delete torrents:', error)
+      return false
+    }
+  }
+
+  /**
+   * 批量设置分类
+   * @param {string[]} hashes - 种子哈希数组
+   * @param {string} category - 分类名称
+   * @returns {Promise<boolean>}
+   */
+  async setCategory(hashes, category) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/setCategory`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashes.join(',')}&category=${encodeURIComponent(category)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to set category:', error)
+      return false
+    }
+  }
+
+  /**
+   * 批量添加标签
+   * @param {string[]} hashes - 种子哈希数组
+   * @param {string} tags - 标签（逗号分隔）
+   * @returns {Promise<boolean>}
+   */
+  async addTags(hashes, tags) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/addTags`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashes.join(',')}&tags=${encodeURIComponent(tags)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to add tags:', error)
+      return false
+    }
+  }
+
+  /**
+   * 批量移除标签
+   * @param {string[]} hashes - 种子哈希数组
+   * @param {string} tags - 标签（逗号分隔）
+   * @returns {Promise<boolean>}
+   */
+  async removeTags(hashes, tags) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/removeTags`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hashes.join(',')}&tags=${encodeURIComponent(tags)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to remove tags:', error)
+      return false
+    }
+  }
+
+  /**
+   * 设置种子保存路径
+   * @param {string} hash - 种子哈希
+   * @param {string} newPath - 新路径
+   * @returns {Promise<boolean>}
+   */
+  async setSavePath(hash, newPath) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/setLocation`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hash}&location=${encodeURIComponent(newPath)}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to set save path:', error)
       return false
     }
   }
@@ -664,6 +941,111 @@ class QBittorrentAPI {
   }
 
   /**
+   * 获取单个种子的下载速度限制
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<number>}
+   */
+  async getTorrentDownloadLimit(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/downloadLimit`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hash}`
+      })
+      if (!this._checkResponse(response)) return -1
+      const limits = await response.json()
+      return limits[hash] || 0
+    } catch (error) {
+      console.error('Failed to get torrent download limit:', error)
+      return -1
+    }
+  }
+
+  /**
+   * 设置单个种子的下载速度限制
+   * @param {string} hash - 种子哈希
+   * @param {number} limit - 速度限制 (bytes/s, -1 表示无限制)
+   * @returns {Promise<boolean>}
+   */
+  async setTorrentDownloadLimit(hash, limit) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/setDownloadLimit`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hash}&limit=${limit}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to set torrent download limit:', error)
+      return false
+    }
+  }
+
+  /**
+   * 获取单个种子的上传速度限制
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<number>}
+   */
+  async getTorrentUploadLimit(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/uploadLimit`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hash}`
+      })
+      if (!this._checkResponse(response)) return -1
+      const limits = await response.json()
+      return limits[hash] || 0
+    } catch (error) {
+      console.error('Failed to get torrent upload limit:', error)
+      return -1
+    }
+  }
+
+  /**
+   * 设置单个种子的上传速度限制
+   * @param {string} hash - 种子哈希
+   * @param {number} limit - 速度限制 (bytes/s, -1 表示无限制)
+   * @returns {Promise<boolean>}
+   */
+  async setTorrentUploadLimit(hash, limit) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/setUploadLimit`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hash}&limit=${limit}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to set torrent upload limit:', error)
+      return false
+    }
+  }
+
+  /**
+   * 设置单个种子的优先级
+   * @param {string} hash - 种子哈希
+   * @param {number} priority - 优先级 (0 = 最大, 1 = 高, 2 = 正常, 3 = 低)
+   * @returns {Promise<boolean>}
+   */
+  async setTorrentPriority(hash, priority) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/setPriority`, {
+        method: 'POST',
+        headers: this._getHeaders(),
+        body: `hashes=${hash}&priority=${priority}`
+      })
+      if (!this._checkResponse(response)) return false
+      return response.ok
+    } catch (error) {
+      console.error('Failed to set torrent priority:', error)
+      return false
+    }
+  }
+
+  /**
    * 获取服务器偏好设置
    * @returns {Promise<Object>}
    */
@@ -693,13 +1075,141 @@ class QBittorrentAPI {
           ...this._getHeaders(),
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ prefs })
+        body: JSON.stringify(prefs)  // 直接传入prefs对象，不需要再包装一层
       })
       if (!this._checkResponse(response)) return false
       return response.ok
     } catch (error) {
       console.error('Failed to set preferences:', error)
       return false
+    }
+  }
+
+  /**
+   * 获取指定种子的文件列表
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<Array>} 文件列表
+   */
+  async getTorrentFiles(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/files?hash=${hash}`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return []
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent files:', error)
+      return []
+    }
+  }
+
+  /**
+   * 获取指定种子的详细属性
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<Object>} 详细属性
+   */
+  async getTorrentProperties(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/properties?hash=${hash}`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return {}
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent properties:', error)
+      return {}
+    }
+  }
+
+  /**
+   * 获取指定种子的追踪器列表
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<Array>} 追踪器列表
+   */
+  async getTorrentTrackers(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/trackers?hash=${hash}`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return []
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent trackers:', error)
+      return []
+    }
+  }
+
+  /**
+   * 获取指定种子的Web种子列表
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<Array>} Web种子列表
+   */
+  async getTorrentWebSeeds(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/webseeds?hash=${hash}`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return []
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent webseeds:', error)
+      return []
+    }
+  }
+
+  /**
+   * 获取指定种子的片段状态
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<Array>} 片段状态数组
+   */
+  async getTorrentPieceStates(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/pieceStates?hash=${hash}`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return []
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent piece states:', error)
+      return []
+    }
+  }
+
+  /**
+   * 获取指定种子的片段哈希
+   * @param {string} hash - 种子哈希
+   * @returns {Promise<Array>} 片段哈希数组
+   */
+  async getTorrentPieces(hash) {
+    try {
+      const response = await fetch(`${this.baseUrl}${API_BASE}/torrents/pieces?hash=${hash}`, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return []
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent pieces:', error)
+      return []
+    }
+  }
+
+  /**
+   * 获取指定种子的对等节点 (Peers) 数据
+   * @param {string} hash - 种子哈希
+   * @param {number} rid - 响应 ID，用于增量更新
+   * @returns {Promise<Object>} 对等节点数据
+   */
+  async getTorrentPeers(hash, rid = 0) {
+    try {
+      const url = `${this.baseUrl}${API_BASE}/sync/torrentPeers?hash=${hash}${rid ? `&rid=${rid}` : ''}`
+      const response = await fetch(url, {
+        headers: this._getHeaders()
+      })
+      if (!this._checkResponse(response)) return null
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to get torrent peers:', error)
+      return null
     }
   }
 

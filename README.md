@@ -1,94 +1,66 @@
 # QB-WebUI
 
-一个基于 Vue3 + Element Plus 的 qBittorrent Web UI 界面。
+一个现代化的 qBittorrent WebUI 前端界面。
+
+## 项目结构
+
+```
+src/
+├── assets/           # 静态资源
+├── components/       # 组件
+│   └── ContextMenu.vue
+├── views/            # 页面视图
+│   └── Dashboard.vue
+├── store/            # 状态管理
+│   └── torrent.js
+├── api/              # API 接口
+│   └── qbittorrent.js
+└── main.js
+```
+
+## 项目文档
+
+详细的设计文档、实现过程和功能说明请参见项目根目录的 `docs/` 目录。
 
 ## 功能特性
 
-- 🎨 现代化的界面设计
-- 📊 实时下载/上传速度监控
-- 📋 任务列表管理（搜索、筛选、分页）
-- ⚙️ 完整的设置界面
-- 🔄 支持暂停/恢复/删除任务
-- 📱 响应式布局
+- 任务卡片布局（支持分类、标签、进度显示）
+- 全局统计信息显示
+- 批量操作功能
+- 分类和标签管理
+- 右键菜单功能
 
-## 技术栈
-
-- **前端框架**: Vue 3
-- **UI 组件**: Element Plus
-- **状态管理**: Pinia
-- **路由**: Vue Router
-- **构建工具**: Vite
-
-## 快速开始
-
-### 安装依赖
+## 开发
 
 ```bash
 npm install
-```
-
-### 开发模式
-
-```bash
 npm run dev
 ```
 
-访问 http://localhost:3000 查看应用
+## 测试
 
-### 构建生产版本
+### Visual Regression Testing
+
+为了在 Tailwind CSS 迁移过程中防止视觉回归，我们已经设置了视觉回归测试基础设施：
+
+1. **配置文件** - 已创建 `playwright.config.js` 配置文件
+2. **测试结构** - 已建立测试目录结构在 `tests/visual/`
+3. **文档** - 已创建详细的视觉回归测试文档在 `docs/visual-regression-testing.md`
+
+```bash
+# 安装依赖
+npm install --save-dev @playwright/test playwright
+
+# 运行视觉测试
+npm run test:visual
+```
+
+## 构建
 
 ```bash
 npm run build
 ```
 
-## 项目结构
+## 文档
 
-```
-qb-webui/
-├── src/
-│   ├── api/           # API 接口
-│   ├── components/    # 公共组件
-│   ├── router/        # 路由配置
-│   ├── store/         # Pinia 状态管理
-│   ├── views/         # 页面组件
-│   ├── assets/        # 静态资源
-│   ├── App.vue        # 根组件
-│   └── main.js        # 入口文件
-├── docs/              # 文档目录
-│   ├── DEVELOPMENT_PLAN.md       # 30天开发计划
-│   ├── TECHNICAL_DOCUMENTATION.md # 技术文档
-│   ├── PROJECT_STATUS.md         # 项目状态
-│   ├── CLAUDE.md                 # Claude 上下文
-│   └── 对话记录.txt              # 对话记录
-├── index.html         # HTML 模板
-├── vite.config.js     # Vite 配置
-└── package.json       # 项目配置
-```
-
-## API 配置
-
-在设置页面配置 qBittorrent 连接信息：
-- 主机地址
-- 端口 (默认: 8080)
-- 用户名
-- 密码
-
-## 开发说明
-
-### 添加新页面
-
-1. 在 `src/views/` 目录下创建新的 Vue 组件
-2. 在 `src/router/index.js` 中添加路由配置
-3. 在侧边栏菜单中添加导航链接
-
-### 状态管理
-
-使用 Pinia 进行状态管理，主要的 store 位于 `src/store/` 目录。
-
-### API 接口
-
-所有 qBittorrent API 调用都在 `src/api/qbittorrent.js` 中实现。
-
-## 许可证
-
-MIT License
+更多详细信息请参见根目录的 `docs/` 文件夹。

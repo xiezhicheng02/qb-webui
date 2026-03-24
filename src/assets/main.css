@@ -1,84 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;700;900&display=swap');
 
-:root {
-  /* === Unified Theme Variables (Light defaults) === */
-  --bg-base: #ffffff;
-  --bg-card: #f8fafc;
-  --bg-sidebar: #f8fafc;
-  --bg-hover: #f1f5f9;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --accent-primary: #0284c7;
-  --accent-secondary: #7c3aed;
-  --accent-gradient: linear-gradient(135deg, #0284c7, #7c3aed);
-  --status-success: #10b981;
-  --status-warning: #f59e0b;
-  --status-error: #ef4444;
-  --status-info: #0284c7;
-  --border-default: #e2e8f0;
-  --border-subtle: #f1f5f9;
-  --speed-download: #0284c7;
-  --speed-upload: #10b981;
+/* 
+ * Theme variables are now defined in tailwind.css using the @theme directive
+ * This file maintains structural styling and utility classes only
+ */
 
-  /* === Backward-compatible aliases === */
-  --bg-light: var(--bg-base);
-  --bg-light-secondary: var(--bg-card);
-  --bg-panel: var(--bg-base);
-  --bg-card-alt: var(--bg-card);
-  --bg-task-list: var(--bg-base);
-  --bg-task-header: var(--bg-card);
-  --bg-task-row: var(--bg-base);
-  --bg-task-row-hover: var(--bg-hover);
-  --bg-sidebar-hover: var(--bg-hover);
-  --bg-active: #dbeafe;
-  --bg-active-secondary: #bfdbfe;
-  --border-color: var(--border-default);
-  --border-color-subtle: var(--border-subtle);
-  --border-light: #cbd5e1;
-  --accent-cyan: var(--accent-primary);
-  --accent-cyan-dark: #0369a1;
-  --accent-magenta: #db2777;
-  --accent-purple: var(--accent-secondary);
-  --accent-green: #059669;
-  --accent-glow: 0 0 15px rgba(2, 132, 199, 0.3);
-  --primary-color: var(--accent-primary);
-  --primary-hover: #38bdf8;
-  --primary-active: #0369a1;
-  --background-color: var(--bg-base);
-  --text-tertiary: #909399;
-  --text-dim: #94a3b8;
-  --accent-gradient-secondary: linear-gradient(135deg, #0369a1, #6d28d9);
+/* === Dark Theme Indicator === */
+html {
+  color-scheme: light;
+}
 
-  /* === Typography, spacing, radius, shadows === */
-  --font-display: 'Orbitron', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Noto Sans SC', sans-serif;
-  --text-xs: 12px;
-  --text-sm: 14px;
-  --text-base: 15px;
-  --text-md: 17px;
-  --text-lg: 19px;
-  --text-xl: 22px;
-  --text-2xl: 26px;
-  --sidebar-width: 260px;
-  --header-height: 64px;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --border-radius: 8px;
-  --border-radius-sm: 6px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
-  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
+html.dark {
+  color-scheme: dark;
 }
 
 /* === Dark Theme Overrides === */
@@ -101,6 +34,10 @@ html.dark {
   --border-subtle: rgba(255, 255, 255, 0.06);
   --speed-download: #38bdf8;
   --speed-upload: #34d399;
+  --table-header-bg: rgba(30, 32, 48, 0.8);
+  --table-row-bg: #1e2030;
+  --table-row-hover: #252840;
+  --table-border: rgba(255, 255, 255, 0.08);
   --bg-active: #1e293b;
   --bg-active-secondary: #1e293b;
   --accent-cyan-dark: #0891b2;
@@ -118,14 +55,20 @@ html.dark {
 }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+  /* Using Tailwind theme variables now available through @theme */
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: 1.6;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 1400px;
+}
+
+#app {
+  min-width: 1400px;
 }
 
 /* Scrollbar Styling */
@@ -135,16 +78,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-card);
+  background: var(--color-bg-card);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--color-text-muted);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--color-text-secondary);
 }
 
 /* Utility Classes */
@@ -156,21 +99,21 @@ body {
 }
 
 .glass-panel {
-  background: var(--bg-card);
+  background: var(--color-bg-card);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--color-border-default);
 }
 
 /* Focus Styles */
 :focus-visible {
-  outline: 2px solid var(--accent-primary);
+  outline: 2px solid var(--color-accent-primary);
   outline-offset: 2px;
 }
 
 /* Selection */
 ::selection {
   background: rgba(0, 212, 255, 0.3);
-  color: var(--text-primary);
+  color: var(--color-text-primary);
 }
 
 /* === Animation Keyframes === */

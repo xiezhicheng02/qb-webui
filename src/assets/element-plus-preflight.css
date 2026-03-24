@@ -1,0 +1,88 @@
+/* 
+ * Custom preflight styles for Element Plus components
+ * This file provides essential resets that Element Plus needs without conflicting with Tailwind
+ */
+
+/* Reset basic elements for Element Plus components */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure Element Plus components have proper font rendering */
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Form elements styling to match Element Plus expectations */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Button resets to maintain Element Plus button styles */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+/* Ensure Element Plus's focus styles work correctly */
+*:focus {
+  outline: none;
+}
+
+/* Prevent Tailwind's default button styling from interfering */
+button:focus-visible {
+  outline: 2px solid var(--el-color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure proper sizing for inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="color"],
+input[type="file"],
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+/* Element Plus table-specific resets */
+.el-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.el-table th,
+.el-table td {
+  padding: 0;
+}
+
+/* Ensure Element Plus components work properly with dark mode */
+html.dark {
+  color-scheme: dark;
+}
